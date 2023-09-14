@@ -1,0 +1,107 @@
+%18-06-20
+f = @(x) cos(x./5)*log(x - 3.5);
+a=4;
+b=7;
+tol=1e-6;
+
+[x,iter]=bisection(f,a,b,tol)
+numel(iter)
+
+%
+A=[5 0 0 0 0; 5 5 0 0 0; 5 5 5 0 0; 5 5 5 5 0; 5 5 5 5 5]
+n=5;
+b=ones(n,1)
+
+for i=1:4
+    det(A(1:i,1:i))
+end
+
+[L,U]=lu(A);
+y=forward_substitution(L,b);
+x=backward_substitution(U,y);
+
+%
+n=10;
+A = 7*diag(ones(n, 1)) - 3*diag(ones(n-1, 1), -1) - 3*diag(ones(n-1, 1), 1);
+for i=1:9
+    det(A(1:i,1:i))~=0
+end
+
+%
+D=diag(diag(A))
+E=-tril(A,-1)
+Bj=D\(D-A)
+
+max(abs(eig(Bj)))
+
+
+
+%
+A=[30 5 30 5 5; 5 55 5 30 5; 30 5 55 5 30; 5 30 5 55 5; 5 5 30 5 30];
+b=ones(5,1);
+%A=A' symmetry
+eig(A)>0  %positive-def
+
+%ok
+
+H=chol(A)
+H=H'
+MyH=MyChol(A)
+
+%
+f = @(x) x.^2 - 3*x + 2;
+phi = @(x) 3 - 2./x;
+%x=2;
+
+
+
+
+
+%
+A=5*diag(ones(5,1))+2*diag(ones(4,1),+1)+2*diag(ones(4,1),-1);
+P=5*diag(ones(5,1));
+eig(A)>0
+eig(P)>0;
+
+b = ones(5, 1);  % Adjust the values of b as per your problem
+x0 = zeros(5, 1);  % Adjust the initial guess x0 as per your problem
+
+[x, iter, incr]=prec_rich_method(A,b,P,0.753,x0,1e-6,100);
+numel(iter)
+
+
+%!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+%The function f(x) = x² (x - 3) has two zeros in the interval [-1, 5].
+%Apply the Newton method to approximate BOTH the zeros of f with a QUADRATIC order of convergence.
+%Set the tolerance to 1e-6 for the stopping criterion and a maximum number of iterations equal to 200.
+f=@(x) x.^2 * (x - 3);
+a=-1;
+b=5;
+tol=1e-6;
+nmax=200;
+df=2.*x.*(x-3)+x.^2;
+
+%x0=bisection(f,a,b,tol);
+%[x,x_iter]=newton(f,df,x0,tol,nmax)
+%[x1,x_iter1] = modified_newton(f,df,x0,tol,nmax,2)
+
+
+%
+f= x.^2 +5;
+I = [-1, 1];
+V = [2, 4, 8, 16, 32, 64];
+comp_trap = zeros(size(V));
+
+for i = 1:numel(V)
+    m = 2^i;
+    %comp_trap(i) = composite_trapezoidal(f, a, b, m);
+end
+
+%err=abs(32/3-comp_trap);
+%p=-diff(log(err))./log(2)
+
+
+%
+f =@(x) cos(x.^2)+3;
+[x,x_iter]=bisection(f,1,19,1e-4)
+numel(x_iter)

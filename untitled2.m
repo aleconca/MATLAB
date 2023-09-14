@@ -1,0 +1,1 @@
+B = triu(rand(15),14)*1e5 + diag(0.1*ones(15,1))
