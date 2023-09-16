@@ -1,10 +1,5 @@
 **Numerical Analysis Methods Repository**
 
-This repository is a comprehensive collection of numerical analysis algorithms and methods implemented in MATLAB. 
-Some applications may be found with relative explanations for each compuatation.
-Tthis repository is designed to be a valuable resource for solving a wide range of numerical problems.
-
-
 >Introduction:
 
 Numerical analysis is a field of mathematics that focuses on developing algorithms and computational techniques to solve mathematical problems numerically. 
